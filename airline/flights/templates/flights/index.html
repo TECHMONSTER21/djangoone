@@ -1,0 +1,8 @@
+{% extends "flights/layout.html" %}
+{% block body %}
+<ul>
+  {% for flight in flights %}
+    <li> Flight {{flight.id}}: {{flight.origin}} to {{flight.destination}} in {{flight.duration}} minutes</li>
+  {% endfor %}
+</ul>
+{% endblock%}
