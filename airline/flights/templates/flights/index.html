@@ -1,9 +1,35 @@
 {% extends "flights/layout.html" %}
 {% block body %}
-<ul>
-  {% for flight in flights %}
-    <li> <a href={% url 'flight' flight.id %}> Flight {{flight.id}}: {{flight.origin}} to {{flight.destination}} in {{flight.duration}} minutes</li></a>
-  {% endfor %}
+<div class="flights">
+    <ul>
+        {% for cities in flightslist %}
+        <li> {{ cities.id }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="bookingdropdown">
+    <h1>Flight Booking</h1>
+    <form action={% url 'flightapp:search' %} method="post">
+    {% csrf_token %}
+        <label for="from">From:</label>
+        <select id="from" name="from">
+            <!-- Iterate over starting places -->
+            {% for place in city %}
+            <option value="{{ place.code }}">{{ place }}</option>
+            {% endfor %}
+        </select>
 
-</ul>
+        <label for="destination">To:</label>
+        <select id="destination" name="destination">
+            <!-- Iterate over destinations -->
+            {% for place in city %}
+            <option value="{{ place.code }}">{{ place }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" value="search">Search Flights</button>
+    </form>
+  </div>
+<div>
+    <a href={% url 'user:logout' %}>Logout</a>
+</div>
 {% endblock%}

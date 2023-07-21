@@ -1,0 +1,12 @@
+{% extends "users/layout.html "%}
+{% block body %}
+<div class="submitpassengerdetails">
+    <form action={% url 'flightapp:book' flightid %} method="post">
+{% csrf_token %}
+<input type="text" name="firstname" placeholder="First Name">
+<input type="text" name="lastname" placeholder="Last Name">
+<input type="submit" value="Submit">
+</form>
+</div>
+
+{% endblock %}

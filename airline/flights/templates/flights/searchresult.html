@@ -1,0 +1,17 @@
+{% extends "users/layout.html "%}
+{% block body %}
+{% load static %}
+<div class="results">
+  {% if flightslist %}
+    <div class="list-group">
+    {% for flight in flightslist %}
+ <a href={% url 'flightapp:book' flight.id %} class="list-group-item list-group-item-action">{{ flight.id }}:{{ flight.origin }} to {{ flight.destination }}</a>
+    {% endfor %}
+    </div>
+    {% else %}
+     <div>
+        No Flights available at the moment
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

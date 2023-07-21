@@ -10,9 +10,9 @@
   {% empty %}
     <ul>No Passengers</ul>
   {% endfor %}
-  <a href={% url 'index' %}>Back to Flights list</a>
-</ul>
-<form action={% url 'book' Flight.id %} method="post">
+  <a href={% url 'flightapp:index' %}>Back to Flights list
+
+<form action={% url 'flightapp:book' Flight.id %} method="post">
 {% csrf_token %}
 <select name="passenger" id="">
 {% for passenger in non_passengers %}
@@ -21,4 +21,5 @@
 </select>
 <input type="submit">
   </form>
+  <a href={% url 'user:logout' %}>Logout</a>
 {% endblock %}

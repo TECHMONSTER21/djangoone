@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse("user:login"))
     return render(request, "users/user.html")
 
 
@@ -18,7 +18,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("flightapp:index"))
         else:
             return render(request, "users/login.html", {
                 "message": "Invalid Credentials"
